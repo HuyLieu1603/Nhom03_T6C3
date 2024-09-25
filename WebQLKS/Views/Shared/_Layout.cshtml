@@ -58,7 +58,7 @@
                                         TÀI KHOẢN
                                     </a>
                                     <ul>
-                                        <li>@Html.ActionLink("Thông tin cá nhân", "UserInfor", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <@*li>@Html.ActionLink("Thông tin cá nhân", "UserInfor", "Account", null, new { @class = "dropdown-item" })</li>*@
                                         <li><a class="dropdown-item" onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
                                     </ul>
                                 }

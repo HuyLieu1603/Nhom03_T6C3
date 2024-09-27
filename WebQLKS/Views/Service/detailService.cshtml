@@ -27,23 +27,7 @@
 </style>
 <div class="container card w-50 text-center">
     <h2 style="text-align:center">Thông tin cụ thể</h2>
-    @if (TempData["SuccessServiceMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessServiceMessage"]
-        </div>
-        <script type="text/javascript">
-            setTimeout(function() {
-                window.location.href = '@Url.Action("historyService", "Account")';
-            }, 2000);
-        </script>
-    }
-    else if (TempData["ErrorService"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorService"]
-        </div>
-    }
+ 
     <div class="form-detail  ">
         <hr />
             @Html.AntiForgeryToken()

@@ -30,93 +30,95 @@
  
     <div class="form-detail  ">
         <hr />
-            @Html.AntiForgeryToken()
-            <dl class="dl-horizontal">
-                <dd style="width:50%;margin-left:25%">
-                    @{
-                        if (Model.MaLoaiDV == "DV01")
+        @Html.AntiForgeryToken()
+        <dl class="dl-horizontal">
+            <dd style="width:50%;margin-left:25%">
+                @{
+                    if (Model.MaLoaiDV == "DV01")
+                    {
+                        if (Model.img != null)
                         {
-                            if (Model.img != null)
-                            {
-                                <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
-                            }
-                            else
-                            {
-                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                            }
-
+                            <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
                         }
-                        else if (Model.MaLoaiDV == "DV02")
+                        else
                         {
-                            if (Model.img != null)
-                            {
-                                <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
-                            }
-                            else
-                            {
-                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                            }
-
+                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
                         }
-                        else if (Model.MaLoaiDV == "DV03")
-                        {
-                            if (Model.img != null)
-                            {
-                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                            }
-                            else
-                            {
-                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                            }
 
+                    }
+                    else if (Model.MaLoaiDV == "DV02")
+                    {
+                        if (Model.img != null)
+                        {
+                            <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
                         }
-                        else if (Model.MaLoaiDV == "DV04")
-
+                        else
                         {
-                            if (Model.img != null)
-                            {
-                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                            }
-                            else
-                            {
-                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                            }
+                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                        }
+
+                    }
+                    else if (Model.MaLoaiDV == "DV03")
+                    {
+                        if (Model.img != null)
+                        {
+                            <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                        }
+
+                    }
+                    else if (Model.MaLoaiDV == "DV04")
+
+                    {
+                        if (Model.img != null)
+                        {
+                            <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
                         }
                     }
-                </dd>
-                <dt>
-                    Tên dịch vụ
-                </dt>
+                }
+            </dd>
+            <dt>
+                Tên dịch vụ
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.TenDV)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TenDV)
+            </dd>
 
-                <dt>
-                    Đơn giá dịch vụ
-                </dt>
+            <dt>
+                Đơn giá dịch vụ
+            </dt>
 
-                <dd>
-                    @String.Format(info, "{0:0,0}", Model.DonGia) VND
-                </dd>
+            <dd>
+                @String.Format(info, "{0:0,0}", Model.DonGia) VND
+            </dd>
 
-                <dt>
-                    Mô tả dịch vụ
-                </dt>
+            <dt>
+                Mô tả dịch vụ
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.MoTa)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MoTa)
+            </dd>
 
-                <dt>
-                    Tên loại dịch vụ
-                </dt>
+            <dt>
+                Tên loại dịch vụ
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+            </dd>
 
-            </dl>
-            <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
+        </dl>
+        <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
+        <input class="btn btn-success" type="button" value="Đặt Dịch Vụ" />
     </div>
+
 </div>

@@ -25,12 +25,11 @@
 
 .card-img {
     width: 100%;
-    border: 1px solid gray;
     height: 100%;
 }
 
 .menu-item {
-    margin-top: 10px;
+    margin: 12px 0;
 }
 
 .menu-content {
@@ -64,4 +63,112 @@
 .img-footer>img{
     width:100%;
     object-fit:cover;
+}
+
+
+
+
+/* Header Styling */
+.index-header {
+    background-color: #f8f9fa;
+    position: relative;
+    z-index: 100;
+}
+
+.location {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    transition: top 0.3s ease; 
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+.navbar {
+    padding-top: 41px;
+}
+    .location.hidden {
+        top: -50px; /* Hide on scroll */
+    }
+
+.navbar-brand .logo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    position: relative;
+    margin-left: 10%;
+}
+
+
+
+/* Account Dropdown */
+.account-dropdown .dropdown-menu {
+    min-width: 160px;
+}
+
+.footer {
+    background-color: black;
+}
+
+.img-footer {
+    border: solid 1px white;
+    border-radius: 30px;
+    width: 100%;
+    height: fit-content;
+}
+
+    .img-footer > img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+
+
+/* Nav link styling */
+/* Nav link default styling */
+
+/* Thiết lập mặc định cho các liên kết trong thanh điều hướng */
+.nav-item .nav-link {
+    font-size: 16px;
+    padding: 10px 15px;
+    font-family: "Playfair Display", serif;
+    color: #212529; /* Màu chữ mặc định */
+    transition: color 0.3s ease; /* Thêm hiệu ứng chuyển màu mượt */
+}
+
+    /* Khi mục được active */
+    .nav-item .nav-link.active {
+        color: #c19b76; /* Màu cam nổi bật cho active */
+        font-weight: bold; /* Tăng độ đậm để làm rõ hơn */
+    }
+
+    /* Hiệu ứng khi di chuột qua */
+    .nav-item .nav-link:hover {
+        color: #c19b76; /* Màu xanh nhạt khi hover */
+    }
+
+
+
+    /* Disabled state */
+    .nav-item .nav-link.disabled {
+        color: #6c757d;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+        /* Hover disabled links will not change */
+        .nav-item .nav-link.disabled:hover {
+            color: #6c757d;
+            background-color: transparent;
+        }
+
+/* Spacing between items */
+.nav-item {
+    margin-left: 10px;
+}
+
+.mt-div {
+    margin: 100px 0;
 }

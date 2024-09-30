@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 //using System.Xml.Linq;
@@ -73,7 +74,7 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult RegisterKH()
         {
-            
+         
             return View();
         }
 
@@ -87,7 +88,9 @@ namespace WebQLKS.Controllers
                 string loai = QuocTich.ToLower();
                 string makhachH = MaKhachHang();
                 int maLoaiKH;
-             
+                String phoneCheck = "+84" + SDT.ToString().Trim();
+
+
                 if (loai == "việt nam")
                 {
                      maLoaiKH = 002;
@@ -113,6 +116,23 @@ namespace WebQLKS.Controllers
                     MaLoaiKH = maLoaiKH
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
+
+                if (checkCCCD(CCCD) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng căn cước công dân";
+                    return RedirectToAction("RegisterKH");
+                }
+                if (checkPhoneNumber(phoneCheck) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng số điện thoại";
+                    return RedirectToAction("RegisterKH");
+                }
+                if (checkGmail(Email) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng gmail";
+                    return RedirectToAction("RegisterKH");
+                }
+
                 if (MatKhau.ToString() != ConfirmPass.ToString())
                 {
                     TempData["ErrorRegister"] = "Mật khẩu không trùng khớp";
@@ -135,6 +155,45 @@ namespace WebQLKS.Controllers
             }
             return View();
         }//sprint 1
+
+        public bool checkCCCD(String cccd)
+        {
+            String regex = "^\\d{12}$";
+            if (Regex.IsMatch(cccd, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool checkPhoneNumber(String phoneNumber)
+        {
+            String regex = @"^\+84\d{9,10}$";
+            if (Regex.IsMatch(phoneNumber, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool checkGmail(String gmail)
+        {
+            String regex = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            if (Regex.IsMatch(gmail, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
     }
 }

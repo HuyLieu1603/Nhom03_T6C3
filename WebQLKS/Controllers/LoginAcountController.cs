@@ -42,6 +42,7 @@ namespace WebQLKS.Controllers
                 TempData["LoginSuccess"] = "Đăng nhập thành công!";
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["KH"] = checkkh.MaKH;
+                Session["nameKH"] = checkkh.HoTen;
                 ViewBag.SessionValue = Session["KH"];
                 if (Session["PreviousUrl"] != null && !string.IsNullOrEmpty(Session["PreviousUrl"].ToString()))
                 {

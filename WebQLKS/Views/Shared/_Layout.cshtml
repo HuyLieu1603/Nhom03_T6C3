@@ -54,8 +54,10 @@
                                 if (Session["KH"] != null)
                                 {
                                     string makh = Session["KH"].ToString();
+                                    String name = Session["nameKH"].ToString().Trim();
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        TÀI KHOẢN
+                                        
+                                        @name.ToString()
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                        
@@ -64,6 +66,7 @@
                                 }
                                 else
                                 {
+                                  
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         KHÁCH HÀNG
                                     </a>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 //using System.Xml.Linq;
@@ -41,6 +42,7 @@ namespace WebQLKS.Controllers
                 TempData["LoginSuccess"] = "Đăng nhập thành công!";
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["KH"] = checkkh.MaKH;
+                Session["nameKH"] = checkkh.HoTen;
                 ViewBag.SessionValue = Session["KH"];
                 if (Session["PreviousUrl"] != null && !string.IsNullOrEmpty(Session["PreviousUrl"].ToString()))
                 {
@@ -72,13 +74,13 @@ namespace WebQLKS.Controllers
         [HttpGet]
         public ActionResult RegisterKH()
         {
-            
+         
             return View();
         }
 
         [HttpPost]
         public ActionResult RegisterKH(string HoTen, string TaiKhoan, string Email, string SDT, string CCCD, string DiaChi, DateTime NgaySinh,
-            string MatKhau, string QuocTich)
+            string MatKhau,String ConfirmPass, string QuocTich )
         {
 
             if (ModelState.IsValid)
@@ -86,6 +88,9 @@ namespace WebQLKS.Controllers
                 string loai = QuocTich.ToLower();
                 string makhachH = MaKhachHang();
                 int maLoaiKH;
+                String phoneCheck = "+84" + SDT.ToString().Trim();
+
+
                 if (loai == "việt nam")
                 {
                      maLoaiKH = 002;
@@ -111,7 +116,29 @@ namespace WebQLKS.Controllers
                     MaLoaiKH = maLoaiKH
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
-                if (checkTK == null)
+
+                if (checkCCCD(CCCD) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng căn cước công dân";
+                    return RedirectToAction("RegisterKH");
+                }
+                if (checkPhoneNumber(phoneCheck) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng số điện thoại";
+                    return RedirectToAction("RegisterKH");
+                }
+                if (checkGmail(Email) != true)
+                {
+                    TempData["ErrorRegister"] = "Sai định dạng gmail";
+                    return RedirectToAction("RegisterKH");
+                }
+
+                if (MatKhau.ToString() != ConfirmPass.ToString())
+                {
+                    TempData["ErrorRegister"] = "Mật khẩu không trùng khớp";
+                    return RedirectToAction("RegisterKH");
+                }
+                else  if (checkTK == null)
                 {
                     TempData["RegisterSuccess"] = "Đăng Ký thành công!";
                     db.Configuration.ValidateOnSaveEnabled = false;
@@ -128,6 +155,45 @@ namespace WebQLKS.Controllers
             }
             return View();
         }//sprint 1
+
+        public bool checkCCCD(String cccd)
+        {
+            String regex = "^\\d{12}$";
+            if (Regex.IsMatch(cccd, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool checkPhoneNumber(String phoneNumber)
+        {
+            String regex = @"^\+84\d{9,10}$";
+            if (Regex.IsMatch(phoneNumber, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool checkGmail(String gmail)
+        {
+            String regex = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            if (Regex.IsMatch(gmail, regex))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
     }
 }

@@ -47,7 +47,7 @@
             <div class="alert alert-danger text-center">
                 @TempData["ErrorRegister"]
             </div>
-            }
+        }
             }
             <div class="form-login">
                 @using (Html.BeginForm("RegisterKH", "LoginAcount", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -91,18 +91,17 @@
                             <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="example123" required></div>
                         </div>
                         <div class="form-floating">
-    <div><label for="ConfirmPass">Nhập lại mật khẩu</label></div>
-    <p>@Html.PasswordFor(Model=>Model.ConfirmPass)</p>
-    <p>@Html.ValidationMessageFor(Model=>Model.ConfirmPass)</p>
-</div>
-<div class="form-floating">
-    <div><label for="QuocTich">Quốc tịch</label></div>
-    <div><input type="text" class="form-control" id="QuocTich" name="QuocTich" placeholder="Việt Nam"></div>
-</div>
+                            <div><label for="ConfirmPass">Nhập lại mật khẩu</label></div>    
+                            <div><input type="password" class="form-control" id="ConfirmPass" name="ConfirmPass" placeholder="example123" required></div>
+                        </div>
+                        <div class="form-floating">
+                            <div><label for="QuocTich">Quốc tịch</label></div>
+                            <div><input type="text" class="form-control" id="QuocTich" name="QuocTich" placeholder="Việt Nam"></div>
+                        </div>
                         <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
                         <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/LoginAcount/LoginAcountKH">Đăng nhập</a></div>
-
                     </form>
                 }
             </div>
         </div>
+

@@ -79,7 +79,7 @@ namespace WebQLKS.Controllers
 
         [HttpPost]
         public ActionResult RegisterKH(string HoTen, string TaiKhoan, string Email, string SDT, string CCCD, string DiaChi, DateTime NgaySinh,
-            string MatKhau, string QuocTich)
+            string MatKhau,String ConfirmPass, string QuocTich )
         {
 
             if (ModelState.IsValid)
@@ -87,6 +87,7 @@ namespace WebQLKS.Controllers
                 string loai = QuocTich.ToLower();
                 string makhachH = MaKhachHang();
                 int maLoaiKH;
+             
                 if (loai == "việt nam")
                 {
                      maLoaiKH = 002;
@@ -112,7 +113,12 @@ namespace WebQLKS.Controllers
                     MaLoaiKH = maLoaiKH
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
-                if (checkTK == null)
+                if (MatKhau.ToString() != ConfirmPass.ToString())
+                {
+                    TempData["ErrorRegister"] = "Mật khẩu không trùng khớp";
+                    return RedirectToAction("RegisterKH");
+                }
+                else  if (checkTK == null)
                 {
                     TempData["RegisterSuccess"] = "Đăng Ký thành công!";
                     db.Configuration.ValidateOnSaveEnabled = false;

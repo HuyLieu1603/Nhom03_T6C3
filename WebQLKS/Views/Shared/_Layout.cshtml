@@ -12,8 +12,80 @@
     <script src="https://kit.fontawesome.com/331feb0958.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+
+
     <div>
         <header class="index-header">
+            <div class="location">
+                <div class="container">
+                    <p>816 Sư Vạn Hạnh P14 Q10 TPHCM </p>
+                    <p>Liên hệ chúng tôi : 0933838277</p>
+
+                </div>
+            </div>
+            <div class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top" id="navbar-1">
+                <div class="container-fluid">
+                    <a class="navbar-brand" style="width:100px;height:100px;position:relative;left:10%" href="@Url.Action("Index", "Home")"><img style="object-fit:cover" class="w-100 h-100" src="~/Content/Home/Image/logo_1-removebg-preview.png" /></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-5 mb-0 mb-lg-0">
+                            <li class="nav-item">
+                                <!-- Trang chủ kiểm tra thêm cả trường hợp URL gốc là "/" -->
+                                <a class="nav-link @(Request.RawUrl == "/" || Request.RawUrl.Contains("Home") ? "active" : "")" href="@Url.Action("Index", "Home")">TRANG CHỦ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link @(Request.RawUrl.Contains("Service") ? "active" : "")" href="@Url.Action("Index","Service")" role="button">DỊCH VỤ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(Request.RawUrl.Contains("Room") ? "active" : "")" href="@Url.Action("CategoryRoom","Room")">PHÒNG</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">QUẦY BAR VÀ ĂN TỐI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">TIỆN NGHI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">BLOG</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">LIÊN HỆ</a>
+                            </li>
+                        </ul>
+
+
+                        <div class="nav-item dropdown d-flex align-content-end">
+                            @{
+                                if (Session["KH"] != null)
+                                {
+                                    string makh = Session["KH"].ToString();
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        TÀI KHOẢN
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        KHÁCH HÀNG
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>@Html.ActionLink("Đăng nhập", "LoginAcountKH", "LoginAcount", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Đăng ký", "RegisterKH", "LoginAcount", null, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @*<header class="index-header">
             <div class="location">
                 <p>816 Sư Vạn Hạnh P14 Q10 TPHCM </p>
                 <p>Liên hệ chúng tôi : 0933838277</p>
@@ -60,8 +132,8 @@
                                         @name.ToString()
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                       
-                                       
+
+
                                     </ul>
                                 }
                                 else
@@ -80,11 +152,11 @@
                     </div>
                 </div>
             </div>
-        </header>
+        </header>*@
         <main class="container-fluid body-content content">
             @RenderBody()
         </main>
-        <div class="container-fluid mt-0 bg-dark" style="color:white">
+        <div class="container-fluid mt-0" style="color: white; background: #343a40">
             <footer class="mt-auto py-2 ">
                 <div class="row mt-3">
                     <div class="col-6 col-md-2 mb-3 text-center">
@@ -121,7 +193,7 @@
                 </div>
 
                 <div class="d-flex flex-column flex-sm-row justify-content-between border-top">
-                    <p style="text-align:center">© 2024 Huflit, Inc. All rights reserved.</p>
+                    <p style="text-align:center; padding: 10px 0 0 10px;">© 2024 Huflit, Inc. All rights reserved.</p>
                     <ul class="list-unstyled d-flex">
                         <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
                         <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
@@ -153,6 +225,26 @@
                 title: 'Huflit'
             });
         }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let locationBar = document.querySelector('.location');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function () {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    locationBar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    locationBar.classList.remove('hidden');
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scroll
+            });
+        });
+
     </script>
 </body>
 </html>

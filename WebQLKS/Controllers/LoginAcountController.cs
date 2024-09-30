@@ -42,6 +42,7 @@ namespace WebQLKS.Controllers
                 TempData["LoginSuccess"] = "Đăng nhập thành công!";
                 db.Configuration.ValidateOnSaveEnabled = false;
                 Session["KH"] = checkkh.MaKH;
+                Session["nameKH"] = checkkh.HoTen;
                 ViewBag.SessionValue = Session["KH"];
                 if (Session["PreviousUrl"] != null && !string.IsNullOrEmpty(Session["PreviousUrl"].ToString()))
                 {
@@ -115,10 +116,9 @@ namespace WebQLKS.Controllers
                     MaLoaiKH = maLoaiKH
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
-
-                if (checkCCCD(CCCD) != true)
+                if (checkGmail(Email) != true)
                 {
-                    TempData["ErrorRegister"] = "Sai định dạng căn cước công dân";
+                    TempData["ErrorRegister"] = "Sai định dạng gmail";
                     return RedirectToAction("RegisterKH");
                 }
                 if (checkPhoneNumber(phoneCheck) != true)
@@ -126,12 +126,11 @@ namespace WebQLKS.Controllers
                     TempData["ErrorRegister"] = "Sai định dạng số điện thoại";
                     return RedirectToAction("RegisterKH");
                 }
-                if (checkGmail(Email) != true)
+                if (checkCCCD(CCCD) != true)
                 {
-                    TempData["ErrorRegister"] = "Sai định dạng gmail";
+                    TempData["ErrorRegister"] = "Sai định dạng căn cước công dân";
                     return RedirectToAction("RegisterKH");
                 }
-
                 if (MatKhau.ToString() != ConfirmPass.ToString())
                 {
                     TempData["ErrorRegister"] = "Mật khẩu không trùng khớp";

@@ -44,9 +44,15 @@
 <div class="container-fluid background">
     @if (TempData["SaiThongTin"] != null)
     {
-        <div class="alert alert-danger text-center position-absolute" style="top: 40%;left:43%;width:fit-content">
+        <div id="notification" class="alert alert-danger text-center position-absolute" style="top: 40%;left:43%;width:fit-content">
             @TempData["SaiThongTin"]
         </div>
+        <script>
+            setTimeout(function () {
+                var notification = document.getElementById("notification");
+                notification.style.display = "none";
+            }, 2000);
+        </script>
     }
     @if (TempData["SessionKhNull"] != null)
     {

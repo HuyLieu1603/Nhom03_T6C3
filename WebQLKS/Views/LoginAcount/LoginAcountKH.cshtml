@@ -225,9 +225,15 @@
     }
     @if (TempData["SessionKhNull"] != null)
     {
-        <div class="alert alert-danger text-center">
+        <div id="notification2" class="alert alert-danger text-center">
             @TempData["SessionKhNull"]
         </div>
+        <script>
+            setTimeout(function () {
+                var notification = document.getElementById("notification2");
+                notification.style.display = "none";
+            }, 2000);
+        </script>
     }
     <div class="form-login">
 

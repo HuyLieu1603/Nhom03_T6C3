@@ -133,6 +133,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAcountController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -467,10 +468,22 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\SuccessView.cshtml" />
+    <Content Include="Views\Account\FailureView.cshtml" />
+    <Content Include="Views\Account\UserInfor.cshtml" />
+    <Content Include="Views\Account\ChiTietDichVu.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\historyOrdRoom.cshtml" />
+    <Content Include="Views\Account\historyService.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
+    <Content Include="Views\Room\DatPhong.cshtml" />
+    <Content Include="Views\Room\TimPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

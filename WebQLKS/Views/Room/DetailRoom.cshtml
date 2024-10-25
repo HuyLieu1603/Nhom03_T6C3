@@ -1,4 +1,4 @@
-﻿@model WebQLKS.Models.RoomDetailViewModel
+@model WebQLKS.Models.RoomDetailViewModel
 
 @{
     ViewBag.Title = "DetailRoom";
@@ -11,177 +11,6 @@
     bool isActive = true;
 
 }
-
-<link href="~/Content/Home.css" rel="stylesheet">
-<style>
-    .carousel-item img {
-        max-width: 100%;
-        height: calc(100vh - 150px);
-        object-fit: cover;
-    }
-
-
-    h6, .heading-6 {
-        font-family: "Montserrat", Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
-    h1, h2, h3, h4, h5, h6, p {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-family: "Playfair Display", "Times New Roman", Times, serif;
-        font-weight: 400;
-    }
-
-    .line {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-    }
-
-    .row-img {
-        margin: 10px;
-        height: 250px;
-        max-width: 100%;
-    }
-
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
-    .card {
-        height: fit-content;
-        margin: 10px;
-    }
-
-    .row {
-        justify-content: space-evenly;
-    }
-
-
-
-    .Detail-btn {
-        width: fit-content;
-        position: relative;
-        left: 37%;
-        top: 30px;
-    }
-
-    .btn-custom {
-        background-color: cadetblue;
-    }
-
-        .btn-custom:hover {
-            background-color: lightblue;
-        }
-
-
-    /* Bố cục tổng thể của menu */
-    .menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between; /* Tạo khoảng cách hợp lý giữa hai phần */
-        margin: 20px 0; /* Thêm khoảng cách giữa các phần tử bên trên và bên dưới */
-    }
-
-    /* Bên trái của menu - danh sách dịch vụ */
-    .menu-left {
-        width: 55%; /* Chiếm 55% chiều rộng */
-        max-height: 100%;
-        overflow-y: auto;
-        padding-right: 20px; /* Thêm khoảng cách giữa danh sách và hình ảnh */
-    }
-
-    /* Bên phải của menu - hình ảnh */
-    .menu-right {
-        width: 40%; /* Chiếm 40% chiều rộng */
-    }
-
-    .card-img img {
-        width: 100%;
-        height: auto;
-        object-fit: cover; /* Giữ tỷ lệ của ảnh mà không bị méo */
-        border-radius: 10px; /* Làm góc ảnh mềm mại hơn */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng để ảnh nổi bật */
-    }
-
-    /* Danh sách menu */
-    .menu-list {
-        list-style: none; /* Bỏ dấu chấm tròn của danh sách */
-        padding-left: 0;
-    }
-
-    /* Mỗi mục trong menu */
-    .menu-item {
-        background-color: #f9f9f9;
-        padding: 15px;
-        border-radius: 8px; /* Bo góc cho mỗi mục */
-        margin-bottom: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ */
-        transition: background-color 0.3s ease;
-    }
-
-        /* Hiệu ứng khi hover vào menu item */
-        .menu-item:hover {
-            background-color: #f1f1f1;
-        }
-
-    /* Tiêu đề và giá của menu */
-    .menu-item__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-        .menu-item__header h4 {
-            margin: 0;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-    /* Giá dịch vụ */
-    .menu-item__price {
-        color: #c19b76;
-        font-weight: bold;
-    }
-
-    /* Mô tả của dịch vụ */
-    .menu-item__main p {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        color: #555;
-        line-height: 1.5; /* Giúp các dòng văn bản trông thoáng hơn */
-    }
-
-    /* Làm đẹp cho nút chi tiết hoặc các nút khác */
-    .btn-custom {
-        background-color: #c19b76;
-        color: white;
-        border-radius: 20px;
-        padding: 8px 20px;
-        transition: background-color 0.3s ease;
-    }
-
-        .btn-custom:hover {
-            background-color: #b0895f;
-        }
-
-    /* Giữ nguyên các phần tử đã được thiết kế trước */
-    .index-header, .navbar, .footer, .nav-item, .location {
-        /* Đã được thiết kế tốt, giữ nguyên */
-    }
-
-    .text-fontFamily {
-        font-family: 'Playfair Display', serif;
-    }
-</style>
 <style>
     .btn-custom {
         background-color: cadetblue;
@@ -203,10 +32,10 @@
         </div>
         <div class="carousel-inner rounded-5">
             @*<div class="carousel-item active">
-                    <img src="https://www.hoteljob.vn/files/VB2-%E1%BA%A3nh%20HTJ/cac-loai-phong-trong-khach-san-1.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                </div>*@
+            <img src="https://www.hoteljob.vn/files/VB2-%E1%BA%A3nh%20HTJ/cac-loai-phong-trong-khach-san-1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>*@
             @foreach (var item in LstHinhAnh)
             {
                 <div class="carousel-item @(isActive ? "active" : "")">
@@ -250,16 +79,16 @@
         <div class="MoTa">
             <ul class="d-flex row flex-wrap">
                 @foreach (var tienIch in Model.TienIch)
-                {
+                 {
                     <li class="d-flex col-md-4 col-lg-3 m-3 list-unstyled"><div><i class="fa-solid fa-circle-check" style="color: #0cb8bb;"></i></div>   <div class="ms-2"> @tienIch</div></li>
-                }
+                 }
             </ul>
         </div>
     </div>
     <div class="button">
-        <form style="display:inline;">
+        <form action="@Url.Action("TimPhong", "Room")" method="get" style="display:inline;">
             <input type="hidden" name="MaLoaiPhong" value="@Model.maPhong" />
-            <button type="button" class="btn btn-custom text-light">ĐẶT PHÒNG</button>
+            <button type="submit" class="btn btn-custom text-light">ĐẶT PHÒNG</button>
         </form>
     </div>
 </div>

@@ -58,7 +58,7 @@
     </td>
 
     <td>
-        @Html.DisplayFor(modelItem => item.tbl_HoaDon.MaKH)
+        @Html.DisplayFor(modelItem => item.MaKH)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.tbl_KhachHang.HoTen)
@@ -85,7 +85,7 @@
         <td>
             <div class="d-flex">
                 @Html.ActionLink("Xem", "ChiTietDichVu", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                @Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { id = item.ID }, new { @class = "btn btn-danger noline" })
+                @*@Html.ActionLink("Hủy dịch vụ", "HuyDichVu", new { id = item.ID }, new { @class = "btn btn-danger noline" })*@
             </div>
         </td> }
                             else

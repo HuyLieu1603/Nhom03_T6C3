@@ -472,12 +472,10 @@
     <Content Include="Views\Account\FailureView.cshtml" />
     <Content Include="Views\Account\UserInfor.cshtml" />
     <Content Include="Views\Account\ChiTietDichVu.cshtml" />
-    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
     <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\historyOrdRoom.cshtml" />
     <Content Include="Views\Account\historyService.cshtml" />
-    <Content Include="Views\Account\XemHoaDon.cshtml" />
     <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
     <Content Include="Views\Room\DatPhong.cshtml" />
     <Content Include="Views\Room\TimPhong.cshtml" />

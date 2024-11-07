@@ -1,8 +1,10 @@
 ﻿@model WebQLKS.Models.BookingViewModel
 
 @{ ViewBag.Title = "Đặt Phòng";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 <link href="~/Content/Home/DatPhong.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <div class="container-fluid body-content">
     @if (TempData["DateError"] != null)
     {
@@ -43,7 +45,8 @@
                     </div>
                 </div>}
 </div>
-<script>function checkday() {
+<script>
+    function checkday() {
         var from1 = $("#Ngày Check-in").val().split("/");
         var dateS = new Date(from1[2], from1[1] - 1, from1[0]);
         var from2 = $("#Ngày Check-out").val().split("/");
@@ -69,3 +72,13 @@
         }
         return true;
     }</script>
+<script>
+    // Khởi tạo Flatpickr cho các ô nhập
+    flatpickr("#dateStart", {
+        dateFormat: "Y-m-d"
+    });
+
+    flatpickr("#dateEnd", {
+        dateFormat: "Y-m-d"
+    });
+</script>

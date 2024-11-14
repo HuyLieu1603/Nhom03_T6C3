@@ -131,6 +131,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -547,6 +548,8 @@
     <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
     <Content Include="Views\Room\DatPhong.cshtml" />
     <Content Include="Views\Room\TimPhong.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

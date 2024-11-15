@@ -1,4 +1,4 @@
-﻿@model WebQLKS.Models.tbl_KhachHang
+﻿@model WebQLKS.Models.RegisterViewModel
 
 @{
     ViewBag.Title = "RegisterKH";
@@ -204,11 +204,12 @@
 
     .form-login > form {
         border: 1px solid white;
-        margin-top:20px;
+        margin-top: 20px;
         width: fit-content;
         padding: 3%;
         border-radius: 30px;
-        background-color: rgba(14, 210, 199, 0.79) /* Xanh lam trong suốt 50% */;
+        background-color: rgba(0, 0, 0, 0.58);
+        /* Xanh lam trong suốt 50% */
     }
 </style>
 <div class="container-fluid background">
@@ -224,60 +225,95 @@
         @using (Html.BeginForm("RegisterKH", "LoginAcount", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-            <form>
-                <h1 class="h3 mb-3 fw-normal">ĐĂNG KÝ</h1>
+            <h1 class="h3 mb-3 fw-normal">ĐĂNG KÝ</h1>
 
-                <div class="form-floating">
-                    <div><label for="Hoten">Họ và tên</label></div>
-                    <div>
-                        <input type="text" class="form-control" id="Hoten" name="Hoten" placeholder="Xin nhập họ và tên người dùng" required>
-                    </div>
+            <div class="form-floating">
+                <div><label for="HoTen">Họ và tên</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Xin nhập họ và tên người dùng" })
+                    @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="TaiKhoan">Tài khoản</label></div>
-                    <div><input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="Xin nhập tên tài khoản" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="TaiKhoan">Tài khoản</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-control", placeholder = "Xin nhập tên tài khoản" })
+                    @Html.ValidationMessageFor(m => m.TaiKhoan, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="Email">Email</label></div>
-                    <div><input type="email" class="form-control" id="Email" name="Email" placeholder="example@gmail.com" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="Email">Email</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@gmail.com" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="SDT">Số điện thoại</label></div>
-                    <div><input type="text" class="form-control" id="SDT" name="SDT" placeholder="0123456789" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="SDT">Số điện thoại</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.SDT, new { @class = "form-control", placeholder = "0123456789" })
+                    @Html.ValidationMessageFor(m => m.SDT, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="CCCD">CCCD</label></div>
-                    <div><input type="text" class="form-control" id="CCCD" name="CCCD" placeholder="012345678901" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="CCCD">CCCD</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.CCCD, new { @class = "form-control", placeholder = "012345678901" })
+                    @Html.ValidationMessageFor(m => m.CCCD, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="DiaChi">Địa chỉ</label></div>
-                    <div><input type="text" class="form-control" id="DiaChi" name="DiaChi" placeholder="Sư Vạn Hạnh quận 10 tp HCM" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="DiaChi">Địa chỉ</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control", placeholder = "Sư Vạn Hạnh quận 10 tp HCM" })
+                    @Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="NgaySinh">Ngày sinh</label></div>
-                    <input type="date" asp-for="NgaySinh" id="NgaySinh" name="NgaySinh" required />
+            </div>
+
+            <div class="form-floating">
+                <div><label for="NgaySinh">Ngày sinh</label></div>
+                <div>
+                    @Html.TextBoxFor(m => m.NgaySinh, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="MatKhau">Mật khẩu</label></div>
-                    <div><input type="password" class="form-control" id="MatKhau" name="MatKhau" placeholder="example123" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="MatKhau">Mật khẩu</label></div>
+                <div>
+                    @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "example123" })
+                    @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating">
-                    <div><label for="ConfirmPass">Nhập lại mật khẩu</label></div>
-                    <div><input type="password" class="form-control" id="ConfirmPass" name="ConfirmPass" placeholder="example123" required></div>
+            </div>
+
+            <div class="form-floating">
+                <div><label for="ConfirmPass">Nhập lại mật khẩu</label></div>
+                <div>
+                    @Html.PasswordFor(m => m.ConfirmPass, new { @class = "form-control", placeholder = "example123" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPass, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-floating" style="margin-bottom:10px">
-                    <div><label for="QuocTich">Quốc tịch</label></div>
-                    <select name="QuocTich" id="QuocTich" required>
-                        <optgroup label="Quốc tịch">
-                            <option value="Việt Nam" selected>Việt Nam</option>
-                            <option value="Nước Ngoài">Nước Ngoài</option>
-                        </optgroup>
-                    </select>
-                    @*<div><input type="text" class="form-control" id="QuocTich" name="QuocTich" placeholder="Việt Nam"></div>*@
+            </div>
+
+            <div class="form-floating" style="margin-bottom:10px">
+                <div><label for="QuocTich">Quốc tịch</label></div>
+                <div>
+                    @Html.DropDownListFor(m => m.QuocTich, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Việt Nam", Value = "Việt Nam" },
+                        new SelectListItem { Text = "Nước Ngoài", Value = "Nước Ngoài" }
+                    }, "Chọn Quốc Tịch", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.QuocTich, "", new { @class = "text-danger" })
                 </div>
-                <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
-                <div>Đã có tài khoản hãy đi đến <a class="word-font" href="/LoginAcount/LoginAcountKH">Đăng nhập</a></div>
-            </form>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
+
+            <div>Đã có tài khoản? Hãy đi đến <a class="word-font" href="/LoginAcount/LoginAcountKH">Đăng nhập</a></div>
         }
     </div>
 </div>

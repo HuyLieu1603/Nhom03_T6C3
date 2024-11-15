@@ -79,16 +79,23 @@ namespace WebQLKS.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterKH(string HoTen, string TaiKhoan, string Email, string SDT, string CCCD, string DiaChi, DateTime NgaySinh,
-            string MatKhau,String ConfirmPass, string QuocTich )
+        public ActionResult RegisterKH(RegisterViewModel model)
         {
 
             if (ModelState.IsValid)
             {
-                string loai = QuocTich.ToLower();
+                // Kiểm tra xem tài khoản đã tồn tại chưa
+                var existingAccount = db.tbl_KhachHang.FirstOrDefault(s => s.TaiKhoan == model.TaiKhoan);
+                if (existingAccount != null)
+                {
+                    // Thêm thông báo lỗi nếu tài khoản đã tồn tại
+                    ModelState.AddModelError("TaiKhoan", "Tài khoản đã được đăng ký. Vui lòng chọn tài khoản khác.");
+                    return View(model); // Trả lại view và giữ lại các giá trị đã nhập
+                }
+                string loai = model.QuocTich.ToLower();
                 string makhachH = MaKhachHang();
                 int maLoaiKH;
-                String phoneCheck = "+84" + SDT.ToString().Trim();
+                String phoneCheck = "+84" + model.SDT.ToString().Trim();
 
 
                 if (loai == "việt nam")
@@ -104,19 +111,20 @@ namespace WebQLKS.Controllers
                 tbl_KhachHang khachhang = new tbl_KhachHang()
                 {
                     MaKH = makhachH,
-                    HoTen = HoTen,
-                    TaiKhoan = TaiKhoan,
-                    MatKhau = MatKhau,
-                    Email = Email,
-                    SDT = SDT,
-                    NgaySinh = NgaySinh,
-                    CCCD = CCCD,
-                    DiaChi = DiaChi,
-                    QuocTich = QuocTich,
+                    HoTen = model.HoTen,
+                    TaiKhoan = model.TaiKhoan,
+                    MatKhau = model.MatKhau,
+                    Email = model.Email,
+                    SDT = model.SDT,
+                    NgaySinh = model.NgaySinh,
+                    CCCD = model.CCCD,
+                    DiaChi = model.DiaChi,
+                    QuocTich = model.QuocTich,
                     MaLoaiKH = maLoaiKH
+
                 };
                 var checkTK = db.tbl_KhachHang.Where(s => s.TaiKhoan == khachhang.TaiKhoan).FirstOrDefault();
-                if (checkGmail(Email) != true)
+                if (checkGmail(model.Email) != true)
                 {
                     TempData["ErrorRegister"] = "Sai định dạng gmail";
                     return RedirectToAction("RegisterKH");
@@ -126,12 +134,12 @@ namespace WebQLKS.Controllers
                     TempData["ErrorRegister"] = "Sai định dạng số điện thoại";
                     return RedirectToAction("RegisterKH");
                 }
-                if (checkCCCD(CCCD) != true)
+                if (checkCCCD(model.CCCD) != true)
                 {
                     TempData["ErrorRegister"] = "Sai định dạng căn cước công dân";
                     return RedirectToAction("RegisterKH");
                 }
-                if (MatKhau.ToString() != ConfirmPass.ToString())
+                if (model.MatKhau.ToString() != model.ConfirmPass.ToString())
                 {
                     TempData["ErrorRegister"] = "Mật khẩu không trùng khớp";
                     return RedirectToAction("RegisterKH");

@@ -127,9 +127,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaoLoiController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyDVController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyKHController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyNSController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginAcountController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -352,6 +360,67 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Admin\EditNV.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\TrangNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\BaoLoi\KhongCoQuyen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChinhSuaSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\chiTietDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLichSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ChiTietSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DanhMucPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DanhSachDatDoAn.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DanhSachPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\DonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\HoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\LichDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\LichSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\lstRoomOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\Spa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\suaDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\SuaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThemSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\ThucDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonDep.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichDon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLichHen.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaLoaiPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaMon.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaPhieuThue.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaPhong.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDV\XoaSpa.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyKH\ChiTietKH.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyKH\DanhSachKH.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyKH\XoaKH.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ChiTietNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\DanhSachNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\EditNV.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\ThemNhanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyNS\XoaNV.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -464,10 +533,22 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\SuccessView.cshtml" />
+    <Content Include="Views\Account\FailureView.cshtml" />
+    <Content Include="Views\Account\UserInfor.cshtml" />
+    <Content Include="Views\Account\ChiTietDichVu.cshtml" />
+    <Content Include="Views\Account\ChiTietPhieuThue.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\historyOrdRoom.cshtml" />
+    <Content Include="Views\Account\historyService.cshtml" />
+    <Content Include="Views\Room\DanhSachPhongTrong.cshtml" />
+    <Content Include="Views\Room\DatPhong.cshtml" />
+    <Content Include="Views\Room\TimPhong.cshtml" />
+    <Content Include="Views\Account\XemHoaDon.cshtml" />
+    <Content Include="Views\Account\ChiTietHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -1,4 +1,4 @@
-﻿@model WebQLKS.Models.tbl_DichVu
+@model WebQLKS.Models.tbl_DichVu
 
 @{
     ViewBag.Title = "detailService";
@@ -7,7 +7,7 @@
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     DateTime a = DateTime.Now.AddDays(3);
-
+    
 }
 <style>
     .form-detail {
@@ -27,98 +27,117 @@
 </style>
 <div class="container card w-50 text-center">
     <h2 style="text-align:center">Thông tin cụ thể</h2>
- 
+    @if (TempData["SuccessServiceMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessServiceMessage"]
+        </div>
+        <script type="text/javascript">
+            setTimeout(function() {
+                window.location.href = '@Url.Action("historyService", "Account")';
+            }, 2000);
+        </script>
+    }
+    else if (TempData["ErrorService"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorService"]
+        </div>
+    }
     <div class="form-detail  ">
         <hr />
-        @Html.AntiForgeryToken()
-        <dl class="dl-horizontal">
-            <dd style="width:50%;margin-left:25%">
-                @{
-                    if (Model.MaLoaiDV == "DV01")
-                    {
-                        if (Model.img != null)
+        @using (Html.BeginForm("orderService", "Service", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <dl class="dl-horizontal">
+                <dd style="width:50%;margin-left:25%">
+                    @{
+                        if (Model.MaLoaiDV == "DV01")
                         {
-                            <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
-                        }
-                        else
-                        {
-                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                        }
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/DonDep/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
 
+                        }
+                        else if (Model.MaLoaiDV == "DV02")
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
+
+                        }
+                        else if (Model.MaLoaiDV == "DV03")
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
+
+                        }
+                        else if (Model.MaLoaiDV == "DV04")
+
+                        {
+                            if (Model.img != null)
+                            {
+                                <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
+                            }
+                        }
                     }
-                    else if (Model.MaLoaiDV == "DV02")
-                    {
-                        if (Model.img != null)
-                        {
-                            <img src="~/Content/Service/menu/@Model.img" class="card-img-top frame" alt="Image Description">
-                        }
-                        else
-                        {
-                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                        }
+                </dd>
+                <dt>
+                    Tên dịch vụ
+                </dt>
 
-                    }
-                    else if (Model.MaLoaiDV == "DV03")
-                    {
-                        if (Model.img != null)
-                        {
-                            <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                        }
-                        else
-                        {
-                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                        }
+                <dd>
+                    @Html.DisplayFor(model => model.TenDV)
+                </dd>
 
-                    }
-                    else if (Model.MaLoaiDV == "DV04")
+                <dt>
+                    Đơn giá dịch vụ
+                </dt>
 
-                    {
-                        if (Model.img != null)
-                        {
-                            <img src="~/Content/Service/spa/@Model.img" class="card-img-top frame" alt="Image Description">
-                        }
-                        else
-                        {
-                            <img src="~/Content/Home/Image/empty.jpg" class="card-img-top frame" alt="Image Description">
-                        }
-                    }
-                }
-            </dd>
-            <dt>
-                Tên dịch vụ
-            </dt>
+                <dd>
+                    @String.Format(info, "{0:0,0}", Model.DonGia) VND
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.TenDV)
-            </dd>
+                <dt>
+                    Mô tả dịch vụ
+                </dt>
 
-            <dt>
-                Đơn giá dịch vụ
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MoTa)
+                </dd>
 
-            <dd>
-                @String.Format(info, "{0:0,0}", Model.DonGia) VND
-            </dd>
+                <dt>
+                    Tên loại dịch vụ
+                </dt>
 
-            <dt>
-                Mô tả dịch vụ
-            </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.MoTa)
-            </dd>
+            </dl>
+            <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
+            <input class="btn btn-success" type="submit" value="Đặt Dịch Vụ" />
+        }
 
-            <dt>
-                Tên loại dịch vụ
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbl_LoaiDichVu.TenLoaiDV)
-            </dd>
-
-        </dl>
-        <input type="hidden" id="maDV" name="maDV" value="@Model.MaDV" />
-        <input class="btn btn-success" type="button" value="Đặt Dịch Vụ" />
     </div>
-
 </div>

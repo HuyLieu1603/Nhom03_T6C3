@@ -64,9 +64,14 @@
                                 {
                                     string makh = Session["KH"].ToString();
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        TÀI KHOẢN
+                                        @Session["nameKH"]
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>@Html.ActionLink("Lịch sử dịch vụ", "historyService", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Phiếu đặt phòng", "historyOrdRoom", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Xem hóa đơn", "XemHoaDon", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Thông tin cá nhân", "UserInfor", "Account", null, new { @class = "dropdown-item" })</li>
+                                        <li><a class="dropdown-item" onclick="return confirm('Bạn có thực sự muốn đăng xuất ?');" href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
                                     </ul>
                                 }
                                 else
@@ -126,8 +131,10 @@
                                 if (Session["KH"] != null)
                                 {
                                     string makh = Session["KH"].ToString();
+                                    String name = Session["nameKH"].ToString().Trim();
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        TÀI KHOẢN
+                                        
+                                        @name.ToString()
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -136,6 +143,7 @@
                                 }
                                 else
                                 {
+                                  
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         KHÁCH HÀNG
                                     </a>
@@ -164,7 +172,7 @@
                     </div>
 
                     <div class="col-6 col-md-2 ps-5 mb-3">
-                        <h5 class="fw-bold">NHÓM 3 <br />QLKS</h5>
+                        <h5 class="fw-bold">NHÓM 3 QLKS</h5>
                         <ul class="nav flex-column mt-2">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Liêu Trương Gia Huy</a></li>
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Nguyễn Tuấn Kiệt</a></li>
@@ -175,7 +183,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-6 col-md-2 mb-3 mt-4">
+                    <div class="col-6 col-md-2 mb-3">
                         <h5 class="fw-bold">LIÊN HỆ</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">828 Sư Vạn Hạnh, Phường 14, Quận 10,TP HCM,Việt Nam</a></li>
